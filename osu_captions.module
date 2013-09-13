@@ -67,7 +67,7 @@ function theme_osu_captions_wrapper($variables) {
  * @return string
  */
 function theme_osu_captions_title($variables) {
-  $title = $variables['field_file_image_title_text'][0]['#markup'];
+  $title = $variables['field_file_image_title_text']['#items'][0]['value'];
   $output = '<figcaption>' . $title . '</figcaption>';
   return $output;
 }
