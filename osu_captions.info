@@ -1,0 +1,5 @@
+name = OSU Image Captions
+description = Adds captions support to media
+package = OSU
+core = 7.x
+stylesheets[all][] = osu_captions.css

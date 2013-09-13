@@ -1,0 +1,44 @@
+/**
+ * Essentials, based on http://stackoverflow.com/a/13363408.
+ */
+.caption {
+    display: table;
+    margin: 0;
+}
+
+.caption > * {
+    display: block;
+    max-width: 100%;
+    padding: 0.5ex;
+    border: 1px solid #CCC;
+    margin: 0;
+}
+
+.caption > figcaption {
+    display: table-caption;
+    caption-side: bottom;
+    max-width: none;
+    border-top: none;
+    padding-top: 0.5ex;
+    font-size: small;
+    text-align: center;
+}
+
+/**
+ * Caption alignment.
+ */
+.caption-left {
+    float: left;
+    margin-left: 0;
+}
+
+.caption-right {
+    float: right;
+    margin-right: 0;
+}
+
+.caption-center {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

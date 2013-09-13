@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * Implements hook_media_token_to_markup_alter().
+ *
+ * @param $element
+ */
+function osu_captions_media_token_to_markup_alter(&$element) {
+
+  // only add caption markup for images displayed with the teaser view mode
+  if (isset($element['content']) &&
+      $element['content']['file']['#file']->type == 'image' &&
+      $element['content']['file']['#view_mode'] == 'teaser') {
+
+    // remove generic wrapper
+    unset($element['content']['#type']);
+
+    // add our own (figure) wrapper
+    $element['content']['#theme'] = 'osu_captions_wrapper';
+
+    // add our own caption (figcaption) wrapper for the title field
+    $element['content']['field_file_image_title_text']['#theme'] = 'osu_captions_title';
+
+    // add our caption class
+    $element['content']['#attributes']['class'][] = 'caption';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ *
+ * @return array
+ */
+function osu_captions_theme() {
+  return array(
+    'osu_captions_wrapper' => array(
+      'render element' => 'content'
+    ),
+    'osu_captions_title' => array(
+      'render element' => 'field_file_image_title_text'
+    ),
+  );
+}
+
+/**
+ * Theme function that wraps everything in the figure tag.
+ *
+ * @param $variables
+ * @return string
+ */
+function theme_osu_captions_wrapper($variables) {
+  $element = $variables['content'];
+
+  // Render all of the fields (image, title, etc.)
+  $rendered_fields = drupal_render_children($element);
+  return '<figure' . drupal_attributes($element['#attributes']) . '>' . $rendered_fields . '</figure>';
+}
+
+/**
+ * Theme function that wraps captions in figcaption tag.
+ *
+ * @param $variables
+ * @return string
+ */
+function theme_osu_captions_title($variables) {
+  $title = $variables['field_file_image_title_text'][0]['#markup'];
+  $output = '<figcaption>' . $title . '</figcaption>';
+  return $output;
+}
