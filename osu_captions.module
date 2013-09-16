@@ -7,10 +7,9 @@
  */
 function osu_captions_media_token_to_markup_alter(&$element) {
 
-  // only add caption markup for images displayed with the teaser view mode
+  // only add caption markup for images
   if (isset($element['content']) &&
-      $element['content']['file']['#file']->type == 'image' &&
-      $element['content']['file']['#view_mode'] == 'teaser') {
+      $element['content']['file']['#file']->type == 'image') {
 
     // remove generic wrapper
     unset($element['content']['#type']);
