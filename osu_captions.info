@@ -1,5 +1,12 @@
-name = OSU Image Captions
-description = Adds captions support to media
-package = OSU
+name = OSU Captions
+description = Drupal image captions for media
 core = 7.x
+package = OSU
+version = 7.x-1.0
+project = osu_captions
 stylesheets[all][] = osu_captions.css
+dependencies[] = features
+dependencies[] = text
+features[features_api][] = api:2
+features[field_base][] = field_caption_text
+features[field_instance][] = file-image-field_caption_text
