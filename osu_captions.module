@@ -21,7 +21,7 @@ function osu_captions_media_token_to_markup_alter(&$element) {
     // Note that this only exists if the field is set to display in:
     // admin/structure/file-types/manage/image/display/teaser.
     if(isset($element['content']['field_caption_text']['#theme'])) {
-      $element['content']['field_caption_text']['#theme'] = 'osu_captions_title';
+      $element['content']['field_caption_text']['#theme'] = 'osu_captions_text';
     }
 
     // add our caption class
