@@ -17,11 +17,11 @@ function osu_captions_media_token_to_markup_alter(&$element) {
     // add our own (figure) wrapper
     $element['content']['#theme'] = 'osu_captions_wrapper';
 
-    // Add our own caption (figcaption) wrapper for the title field.
+    // Add our own caption (figcaption) wrapper for the caption field.
     // Note that this only exists if the field is set to display in:
     // admin/structure/file-types/manage/image/display/teaser.
-    if(isset($element['content']['field_file_image_title_text']['#theme'])) {
-      $element['content']['field_file_image_title_text']['#theme'] = 'osu_captions_title';
+    if(isset($element['content']['field_caption_text']['#theme'])) {
+      $element['content']['field_caption_text']['#theme'] = 'osu_captions_text';
     }
 
     // add our caption class
@@ -39,8 +39,8 @@ function osu_captions_theme() {
     'osu_captions_wrapper' => array(
       'render element' => 'content'
     ),
-    'osu_captions_title' => array(
-      'render element' => 'field_file_image_title_text'
+    'osu_captions_text' => array(
+      'render element' => 'field_caption_text'
     ),
   );
 }
@@ -65,8 +65,8 @@ function theme_osu_captions_wrapper($variables) {
  * @param $variables
  * @return string
  */
-function theme_osu_captions_title($variables) {
-  $title = $variables['field_file_image_title_text']['#items'][0]['value'];
+function theme_osu_captions_text($variables) {
+  $title = $variables['field_caption_text']['#items'][0]['value'];
   $output = '<figcaption>' . $title . '</figcaption>';
   return $output;
 }
